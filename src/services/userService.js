@@ -1,21 +1,21 @@
 import axios from '../axios'
 
-const handleLoginApi = (userEmail, userPassword) => {
+const loginApi = (userEmail, userPassword) => {
     return axios.post('/api/login', {
         email: userEmail,
         password: userPassword,
     })
 }
 
-const getAllUsers = (inputId) => {
+const getAllUsersApi = (inputId) => {
     return axios.get(`/api/get-all-users?id=${inputId}`)
 }
 
-const createNewUserService = (data) => {
+const createNewUserApi = (data) => {
     return axios.post('/api/create-new-user', data)
 }
 
-const deleteUserService = (userId) => {
+const deleteUserApi = (userId) => {
     return axios.delete('/api/delete-user', {
         data: {
             id: userId
@@ -23,8 +23,8 @@ const deleteUserService = (userId) => {
     })
 }
 
-const editUserService = (inputData) => {
+const editUserApi = (inputData) => {
     return axios.put('/api/edit-user', inputData)
 }
 
-export { handleLoginApi, getAllUsers, createNewUserService, deleteUserService, editUserService } 
+export { loginApi, getAllUsersApi, createNewUserApi, deleteUserApi, editUserApi } 

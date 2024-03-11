@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 // import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
 import './UserManage.scss';
-import { getAllUsers, createNewUserService, deleteUserService, editUserService } from '../../services';
+import { getAllUsersApi, createNewUserApi, deleteUserApi, editUserApi } from '../../services';
 import ModalUser from './ModalUser';
 import ModalEditUser from './ModalEditUser';
 import { emitter } from '../../utils/emitter';
@@ -24,7 +24,7 @@ class UserManage extends Component {
     }
 
     getAllUsersFromReact = async () => {
-        let response = await getAllUsers('All')
+        let response = await getAllUsersApi('All')
         if (response && response.errorCode === 0) {
             this.setState({
                 arrUsers: response.users
@@ -53,7 +53,7 @@ class UserManage extends Component {
 
     CreateNewUser = async (data) => {
         try {
-            let response = await createNewUserService(data)
+            let response = await createNewUserApi(data)
             if (response && response.errorCode !== 0) {
                 alert(response.errorMessage)
             } else {
@@ -71,7 +71,7 @@ class UserManage extends Component {
 
     handleDeleteUser = async (user) => {
         try {
-            let response = await deleteUserService(user.id)
+            let response = await deleteUserApi(user.id)
             if (response && response.errorCode === 0) {
                 await this.getAllUsersFromReact()
             } else {
@@ -91,7 +91,7 @@ class UserManage extends Component {
 
     handleEditUser = async (user) => {
         try {
-            let response = await editUserService(user)
+            let response = await editUserApi(user)
             if (response && response.errorCode === 0) {
                 this.setState({
                     isOpenModalEditUser: false
